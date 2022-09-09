@@ -33,7 +33,7 @@
 		"_common": 
 		{
 			"name": "App Connect for Manufacturing - Using the OPC-UA-Input node to read subscribed data from an OPC Server",
-			"shortDescription": "Learn how to create a simple message flow using OPC-UA-Input node for reading changed values of subscribed data from an OPC server.",
+			"shortDescription": "Learn how to create a simple message flow for reading subscribed data from an OPC server using the OPC-UA-Input node. This tutorial requires an installation of App Connect for Manufacturing.",
 			"durationText": "This tutorial takes approximately",
 			"durationTime": "10 minutes",
 			"_resourceToOpenComment": "The ID of the first resource to open when the user imports the tutorial. Resource IDs are defined in the repo_metadata.json.",
@@ -48,40 +48,45 @@
 		"pageDetails": {
 			"topicsName": "Tutorial Topics",
 			"_topicListComment": "A short list of product concepts or tasks demonstrated by this tutorial",
-			"topicList": [{
-					"title": "Create a Data source in the Manufacturing Perspective"
+			"topicList": [
+				{
+					"title": "Creating and starting an Integration Server"
 				},
 				{
-					"title": "Create and start an Integration Server"
+					"title": "Creating a data source connection"
 				},
 				{
-					"title": "Create and deploy a Control Flow"
-				},
+					"title": "Configuring the OPC-UA-Input node message flow"
+				},				
 				{
-					"title": "Create and deploy an Input Node Flow"
+					"title": "Deploying the message flows"
 				}
 			],
 			"outcomesName": "Learning outcomes",
-			"_outcomesComment": "Using the OPC-UA-Input node to read subscribed data from an OPC Server when the data value changes.",
+			"_outcomesComment": "Learn how to create a message flow to read changed values of the subscribed data from an OPC server using the OPC-UA-Input node.",			
 			"outcomeList": [{
-				"title": "Use App Connect Manufacturing Pack OPC-UA-Input node to read changed values of subscribed data from an OPC Server."
+				"title": "Learn how to create a message flow to read changed values of the subscribed data from an OPC server using the OPC-UA-Input node."
 			}],
             "summary": {
 				"overviewName": "OVERVIEW",
 				"_overviewComment": "This tutorial demonstrates how to create a simple message flow using the OPC-UA-Input node to read subscribed data from an OPC Server, when the data value changes.",
 				"sections": [
+				
 					{
-					"section": "This tutorial assumes you have installed and configured AppConnect for Manufacturing. If this is not the case, the tutorial has a pre-requisites section which will help you to complete the required tasks before running the tutorial."
+						"section": "This tutorial assumes you have installed and configured App Connect for Manufacturing. For more information, see Installing IBM App Connect for Manufacturing in the help links provided below."
+					},
+										{
+						"section": "You must create an integration server before you can deploy integration solutions and related resources. You will also need to connect your Toolkit to an OPC server."
 					},
 					{
-					"section": "After creating a DataSource connection to an OPCServer and starting the Integration Server, you can import a provided application project. The project contains two message flows: a Control Flow and an Input Flow."
+						"section": "You can try out this message flow by simply importing the two provided projects. One application project contains a control flow and another application project contains an input flow."
 					},
 					{
-					"section": "After performing some configuration, you will first deploy and start the control flow. Next you will deploy and start the input flow. If the control flow is already deployed then it is not required to deploy again."
+						"section": "The tutorial will guide you through deploying and starting both flows."
 					},
 					{
-					"section": "The Input flow is driven using OPC-UA-Input node which causes the flow to execute, control comes to OPC-UA-Input whenever there is value changed in specified client item. This changed value is stored in the Output file using the file output node."
-					}
+					"section": "The input flow is driven by using the OPC-UA-Input node. The OPC-UA-Input node triggers the flow to run when the value of the specified client item changes. The updated client item value is stored in an output file by using the File Output node."
+					}						
 				]
 			},
 			"helpLinks": {
@@ -101,11 +106,12 @@
 					"name": "Create",
 					"heading": "Import project",
 					"_createComment": "A description of what will happen when the user clicks Import.",
-					"sections": [{
-							"section": "Click <span class='uicontrol'>Import</span> and the <span class='uicontrol'>TestInputFlowApp and ControlFlowApp</span> application will be imported into your workspace."
-						},
+					"sections": [						
 						{
-							"section": "The <span class='uicontrol'>TestMessageInputFlow</span> message flow will be opened for you."
+							"section": "Click <span class='uicontrol'>Import</span> and the <span class='uicontrol'>App_OPCUA_Input</span> and <span class='uicontrol'>App_OPCUA_Control</span> applications will be imported into your workspace."
+						},						
+						{
+							"section": "The <span class='uicontrol'>App_OPCUA_Input</span> application contains <span class='uicontrol'>Flow_OPCUA_Input.msgflow</span> while <span class='uicontrol'>App_OPCUA_Control</span> contains <span class='uicontrol'>Flow_OPCUA_Control.msgflow</span>."
 						}
 					]
 				},
@@ -137,53 +143,72 @@
 				"heading": "Prepare for Input Flow",
 				"_prepareComment": "Prepare for Input Flow",
 				"sections": [{
-						"section": "Create a Data Source connection to an OPC Server using the App Connect Enterprise Toolkit:",
-						"steps": {
-							"type": "ordered",
-							"details": [{
-									"details": "To create a data source, complete the following steps."
-								},
-								{
-									"details": "Navigate to the Manufacturing Perspective > DataSources. Specify a name for the mapping node and click OK. The new data source gets created under the DataSource Properties window."
-								},
-								{
-									"details": "Select the Server URL Type as Endpoint"
-								},
-								{
-									"details": "Specify the Server URL: e.g. opc.tcp://TEST_OPC_SERVER:port/OPCUA/SimulationServer"
-								}, {
-									"details": "Select the default values for the rest of the parameters and click on Create DataSource"
-								}
+							"section": "Creating a Data Source connection to an OPC Server",
+							"steps": {
+								"type": "ordered",
+								"details": [{
+										"details": "To create a data source, complete the following steps."
+									},
+									{
+										"details": "Ensure that your OPC UA server is up and running."
+									},									
+									{
+										"details": "In the IBM App Connect Enterprise Toolkit, navigate to the Manufacturing Perspective > DataSources."
+									},
+									{
+										"details": "Right-click the Source folder and select Add Mapping Node."
+									},
+									{
+										"details": "Specify a name for the mapping node and click OK. The new data source gets created under the DataSource Properties window."
+									},	
+									{
+										"details": "Select Server URL Type as Endpoint"
+									},
+									{
+										"details": "Specify your OPC Server URL: For example: opc.tcp://TEST_OPC_SERVER:port/OPCUA/SimulationServer"
+									}, 
+									{
+										"details": "Keep the default values for the remaining data source properties and click Create DataSource"
+									}, 
+									{
+										"details": "Check the data source activity in the Logging view for any issues."
+									}, 
+									{
+										"details": "On successful connection of a data source, App Connect for Manufacturing allows you to create Client Item and map it to the available source item from the OPC server."
+									}
 							]
 						}
 					},		
 					{
-						"section": "Create and run Integration Server :",
+						"section": "Creating and starting an Integration Server:",
 						"steps": {
 							"type": "ordered",
-							"details": [{
-									"details": "Assuming you are using a Windows platform, open an App Connect Enterprise Command Console and start an integration server using the following command:<br><code>IntegrationServer --work-dir C:\\TESTSERVER --name TESTSERVER --admin-rest-api 7600 --http-port-number 7800 --console-log</code> <br>where <b>C:\\TESTSERVER</b> is a folder on your file system that the server will use for its working directory."
-								},
-
-								{
-									"details": "Modify C:\\TESTSERVER\\server.conf.yaml in windows and /opt/TESTSERVER/server.conf.yaml in linux/unix to add the following lines after the line ConnectorProviders:"
-								},								
-								{
-									"details": "Please note that you would need to change the jars URL value as per your installation of ACMFG. But it should point to the amd64_nt_4 folder"
-								},
-								{
-									"details": "For Windows: <br>ACMfg:<br>&nbsp;&nbsp;&nbsp;&nbsp;connectorClassName:<br>'com.ibm.industrypack.industryclient.connector.ICConnectorFactory'<br>&nbsp;&nbsp;&nbsp;&nbsp;jarsURL: 'C:\\Program Files\\IBM\\ACMfg\\3.0.1.0\\runtime\\amd64_nt_4'<br>&nbsp;&nbsp;&nbsp;&nbsp;property1: 'trustCertificate=true'<br>&nbsp;&nbsp;&nbsp;&nbsp;property2: 'allowEndpointMismatch=true;discardData=false'"
-								},
-								{
-									"details": "For Linux/Unix: <br>ACMfg:<br>&nbsp;&nbsp;&nbsp;&nbsp;connectorClassName:<br>'com.ibm.industrypack.industryclient.connector.ICConnectorFactory'<br>&nbsp;&nbsp;&nbsp;&nbsp;jarsURL: '/opt/IBM/ACMfg-3.0.1.0/runtime/amd64_linux_2'<br>&nbsp;&nbsp;&nbsp;&nbsp;property1: 'trustCertificate=true'<br>&nbsp;&nbsp;&nbsp;&nbsp;property2: 'allowEndpointMismatch=true;discardData=false'"
-								},
-								{
-									"details": "Save the above server.conf.yaml file and restart the Integration server using the command mentioned above"
-								},
-								{
-									"details": "In the App Connect Enterprise Toolkit Integration Explorer view, right click the folder <img src='http://ot4i.github.io/ot4i.tutorials//dist/images/icons/ace/IntegrationServers.png' alt='' /> and select the menu item  <img src='http://ot4i.github.io/ot4i.tutorials//dist/images/icons/ace/ConnectToAnIntegrationServer.png' alt='' />. In the connection details panel, specify the <b>Host name</b> to be <b>localhost</b>, the <b>Port</b> to be <b>7600</b> and click Finish. This will connect your Toolkit and display the integration server that you started in the last step <img src='http://ot4i.github.io/ot4i.tutorials//dist/images/icons/ace/TESTSERVER.png' alt='' />"
-								}
-							]
+							"details": [
+									{
+										"details": "Assuming you are using a Windows platform, open an App Connect Enterprise Command Console and start an integration server using the following command:<br><code>IntegrationServer --work-dir C:\\TESTSERVER --name TESTSERVER --admin-rest-api 7600 --http-port-number 7800 --console-log</code> <br>where <b>C:\\TESTSERVER</b> is a folder on your file system that the server will use for its working directory."
+									},
+									{
+										"details": "Navigate to the folder where the server.conf yaml file is located."
+									},
+									{
+										"details": "For example : Modify C:\\TESTSERVER\\server.conf.yaml in windows and /opt/TESTSERVER/server.conf.yaml in linux/unix to add the following lines under 'ConnectorProviders' to add App Connect for Manufacturing connector provider properties.:"
+									},
+									
+									{
+										"details": "For Windows: <br>ACMfg:<br>&nbsp;&nbsp;&nbsp;&nbsp;connectorClassName:<br>'com.ibm.industrypack.industryclient.connector.ICConnectorFactory'<br>&nbsp;&nbsp;&nbsp;&nbsp;jarsURL: 'C:\\Program Files\\IBM\\ACMfg\\3.0.1.0\\runtime\\amd64_nt_4'<br>&nbsp;&nbsp;&nbsp;&nbsp;property1: 'trustCertificate=true'<br>&nbsp;&nbsp;&nbsp;&nbsp;property2: 'allowEndpointMismatch=true;discardData=false'"
+									},
+									{
+										"details": "For Linux/Unix: <br>ACMfg:<br>&nbsp;&nbsp;&nbsp;&nbsp;connectorClassName:<br>'com.ibm.industrypack.industryclient.connector.ICConnectorFactory'<br>&nbsp;&nbsp;&nbsp;&nbsp;jarsURL: '/opt/IBM/ACMfg-3.0.1.0/runtime/amd64_linux_2'<br>&nbsp;&nbsp;&nbsp;&nbsp;property1: 'trustCertificate=true'<br>&nbsp;&nbsp;&nbsp;&nbsp;property2: 'allowEndpointMismatch=true;discardData=false'"
+									},
+									{
+										"details": "Note: The jarsURL is the installation directory of App Connect for Manufacturing that points to the amd64_nt_n folder."
+									},
+									{
+										"details": "Save the above server.conf.yaml file and restart the Integration server using the command mentioned in step 1"
+									},
+									{
+										"details": "In the App Connect Enterprise Toolkit Integration Explorer view, right click the folder <img src='http://ot4i.github.io/ot4i.tutorials//dist/images/icons/ace/IntegrationServers.png' alt='' /> and select the menu item  <img src='http://ot4i.github.io/ot4i.tutorials//dist/images/icons/ace/ConnectToAnIntegrationServer.png' alt='' />. In the connection details panel, specify the <b>Host name</b> to be <b>localhost</b>, the <b>Port</b> to be <b>7600</b> and click Finish. This will connect your Toolkit and display the integration server that you started in the last step <img src='http://ot4i.github.io/ot4i.tutorials//dist/images/icons/ace/TESTSERVER.png' alt='' />"
+									}							]
 						}
 					}
              ]
@@ -191,12 +216,19 @@
                 "helpLinks": 
 				{
 								"title": "Find out more",
-			"details": [{
-				"title": "IBM Documentation link to ",
-				"description": "Using the Manufacturing Perspective",
-				"link": "https://www.ibm.com/docs/en/app-connect/12.0?topic=manufacturing-developing-message-flow-applications",
-				"type": "web"
-			}]
+			"details": [
+					{
+						"title": "IBM Documentation link to ",
+						"description": "Using the Manufacturing Perspective",
+						"link": "https://www.ibm.com/docs/en/app-connect/12.0?topic=manufacturing-app-connect-overview",
+						"type": "web"
+					},
+					{
+						"title": "IBM Documentation link to Troubleshooting ",
+						"description": "Troubleshooting and Logging",
+						"link": "https://www.ibm.com/docs/en/app-connect/12.0?topic=manufacturing-troubleshooting-support",
+						"type": "web"					
+					}				]
                 }
             },
             "run": 
@@ -207,39 +239,42 @@
                     "heading": "",
                     "_runComment": "The full steps for the user to run through the tutorial. Use 'sections' to render paragraphs, 'steps' with a type of 'ordered' or 'unordered' to render HTML lists, and 'substeps' to render nested lists.",
                 "sections":[  					
-					{
+{
 						"section": "Configure the Input Message flow ",
 						"steps": {
 							"type": "ordered",
 							"details": [{
-									"details": "Open the TestInputFlow.msgflow. You will see 2 nodes:  'OPC-UA-Input', and 'File Output'"
+										"details": "From the Application Development view, under the App_OPCUA_Input application, double-click Flow_OPCUA_Input.msgflow to open in the Flow Exerciser. The flow consists of 'OPC-UA-Input', and 'File Output' nodes. "
+									},
+									{
+										"details": "Navigate to the Flow Exerciser and double-click the OPC-UA-Input node to open the OPC-UA-Input Node properties. "
+									},
+									{
+										"details": "From the node properties window, click 'Add' to open the Manufacturing perspective."
+									},
+									{
+										"details": "Select the appropriate 'Data source' that was created earlier in the Prepare section."
+									},
+									{
+										"details": "Click on 'Refresh Source Item Tree' to load the Source Items. Select the node from the source tree for which you want to read data "
+									},
+									{
+										"details": "From the 'Client Items' tree, right-click on the 'Item' node and select 'Add Mapping Node'"
+									},
+									{
+										"details": "Specify a name for the node and click 'Ok' "
+									},
+									{
+										"details": "Click 'Create Client Item' from the 'Client Item Properties' tab"
+									},
+								{
+									"details": "Click 'Add Trigger Item' and the Add Trigger Item wizard window loads. Select the default values and click OK."
 								},
 								{
-									"details": "Click on OPC-UA-Input node to open the OPC-UA-Input Node properties. "
+									"details": "Navigate back to the Flow Exerciser and double-click the File Output node. The File Output node properties window loads."
 								},
 								{
-									"details": "From the properties window, click on the 'Add' button to open into Manufacturing perspective. "
-								},
-								{
-									"details": "Select the appropriate 'Data source' created in the Pre-Requisite section ."
-								},
-								{
-									"details": "Click on 'Refresh Source Item Tree' to load the Source Items. Select the node from the source tree for which you want to read or monitor data "
-								},
-								{
-									"details": "From the 'Client Items' tree, right-click on the 'Item' node and select 'Add Mapping Node'"
-								},
-								{
-									"details": "Specify a name for the node and click 'Ok' "
-								},
-								{
-									"details": "Click on 'Create Client Item' from the 'Client Item Properties' tab"
-								},
-								{
-									"details": "Click on 'Add Trigger Item' and a new window will open. Select the default values and click on 'OK'."
-								},
-								{
-									"details": "Click on 'File Output' node . In the properties window, specify the Directory, Filename of the output file where the subscribed data values should be stored. Select the mode for writing as 'Write directly to the output file (append if file exists)' "
+									"details": "Click the Basic tab. Specify the directory, file name of the output file where the subscribed data values should be stored and set the 'Select the mode for writing to file' as 'Write directly to the output file (append if file exists)'."
 								},
 								{
 									"details": "Save the flow"
@@ -248,41 +283,24 @@
 						}
 					},
 					{
-						"section": "Deploy the Control Flow if Required",
-						"steps": {
-							"type": "ordered",
-							"details": [{
-									"details": "Please make sure you are connected to an Integration Server as described in the PreRequisite section"
-								},
-								{
-									"details": "From the Application Development Tab , under the ControlFlowApp-->Flows, right-click the TestControlFlow.msgflow and select 'Deploy' . "
-								}, {
-									"details": "From the 'Integration Server Select the Integration Server that you have started Click 'Finish' on the Deploy window. "
-								}, {
-									"details": "Click 'Ok' on the Confirm Window. Once the 'The task completed successfully' message is seen, close the 'Progress Information' window. "
-								}
-							]
-						}
-					},
-
-					{
-						"section": "Deploy the Input Flow ",
-						"steps": {
-							"type": "ordered",
-							"details": [{
-									"details": "Please make sure you are connected to an Integration Server as described in the PreRequisite section"
-								},
-								{
-									"details": "From the Application Development Tab , under the TestInputFlowApp-->Flows, right-click the TestInputFlow.msgflow and select 'Deploy' . "
-								}, {
-									"details": "From the 'Integration Server Select the Integration Server that you selected earlier for Control Flow .Click 'Finish' on the Deploy window. "
-								}, {
-									"details": "Click 'Ok' on the Confirm Window. Once the 'The task completed successfully' message is seen, close the 'Progress Information' window. "
-								}
-
-							]
-						}
-					},
+							"section": "Deploying the OPC-UA-Input node message flow",
+							"steps": {
+								"type": "ordered",
+								"details": [{
+										"details": "Ensure that you are connected to an Integration Server."
+									},
+									{
+										"details": "From the Application Development view , right-click the Flow_OPCUA_Input.msgflow and select 'Deploy'."
+									}, 
+									{
+										"details": "In the Deploy window, select the integration server that you have started, and click Finish."
+									}, 
+									{
+										"details": "Click 'Ok' to confirm the deployment.The App_OPCUA_Input application name is displayed under the selected integration server from Integration Nodes view." 
+									}
+								]
+							}
+						},
 
 					{
 						"section": "Test the Input Flow ",
@@ -290,17 +308,16 @@
 							"type": "ordered",
 							"details": [
 								{
-									"details": "Flow will be triggered automatically whenever the value of the specified client item is changed"
+									"details": "The OPC-UA-Input node automatically triggers the flow to run when the value of the specified client item changes on the OPC Server."
 								},
 								{
-									"details": "Changed value be appended in the selected output file ."
+									"details": "The updated client item value is stored in an output file by using the File Output node."
 								}
 
 							]
 						}
 					}
-							   
-							   
+							   							   
                     ]
                 },
                 "helpLinks": 
@@ -309,13 +326,13 @@
                     "details": 
 					[
                         {
-                             "title": "IBM Documentation link to ",
+                             "title": "IBM Documentation link to the Manufacturing Perspective",
 				             "description": "Using the Manufacturing Perspective",
 				             "type": "web",
 				             "link": "https://www.ibm.com/docs/en/app-connect/12.0?topic=manufacturing-app-connect-overview"
                         },
 						{
-							"title": "IBM Documentation link to Troubleshooting ",
+							"title": "IBM Documentation link to Troubleshooting",
 							"description": "Troubleshooting and Logging",
 							"link": "https://www.ibm.com/docs/en/app-connect/12.0?topic=manufacturing-troubleshooting-support",
 							"type": "web"
