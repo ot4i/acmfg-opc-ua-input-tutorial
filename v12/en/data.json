@@ -33,7 +33,7 @@
 		"_common": 
 		{
 			"name": "App Connect for Manufacturing - Using the OPC-UA-Input node to read subscribed data from an OPC Server",
-			"shortDescription": "Learn how to create a simple message flow for reading subscribed data from an OPC server using the OPC-UA-Input node. This tutorial requires an installation of App Connect for Manufacturing.",
+			"shortDescription": "Learn how to create a simple message flow by using the OPC-UA-Input node to read subscribed data from an OPC server. This tutorial requires an installation of App Connect for Manufacturing.",
 			"durationText": "This tutorial takes approximately",
 			"durationTime": "10 minutes",
 			"_resourceToOpenComment": "The ID of the first resource to open when the user imports the tutorial. Resource IDs are defined in the repo_metadata.json.",
@@ -88,7 +88,7 @@
 					"section": "The input flow is driven by using the OPC-UA-Input node. The OPC-UA-Input node triggers the flow to run when the value of the specified client item changes. The updated client item value is stored in an output file by using the File Output node."
 					}						
 				]
-			},
+			},			
 			"helpLinks": {
 						"_helpLinksComment": "Helplinks that have a type:web attribute are rendered as web links. Otherwise, links are assumed to be to embedded Help topics in the Knowledge Center.",
 						"title": "Find out more",
@@ -97,7 +97,14 @@
 							"description": "IBM App Connect for Manufacturing overview",
 							"link": "https://www.ibm.com/docs/en/app-connect/12.0?topic=manufacturing-app-connect-overview",
 							"type": "web"
-						}]
+						},
+						{
+							"title": "Knowledge Center link to ",
+							"description": "Installing and uninstalling IBM App Connect for Manufacturing",
+							"link": "https://www.ibm.com/docs/en/app-connect/12.0?topic=manufacturing-installing-uninstalling",
+							"type": "web"
+						}											
+						]
 			}
 		},
 		"pageSteps": {
