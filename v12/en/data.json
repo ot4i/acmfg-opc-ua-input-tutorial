@@ -202,10 +202,10 @@
 									},
 									
 									{
-										"details": "For Windows: <br><code>ACMfg:<br>&nbsp;&nbsp;&nbsp;&nbsp;connectorClassName:<br>'com.ibm.industrypack.industryclient.connector.ICConnectorFactory'<br>&nbsp;&nbsp;&nbsp;&nbsp;jarsURL: 'C:\\Program Files\\IBM\\ACMfg\\3.0.1.0\\runtime\\amd64_nt_4'<br>&nbsp;&nbsp;&nbsp;&nbsp;property1: 'trustCertificate=true'<br>&nbsp;&nbsp;&nbsp;&nbsp;property2: 'allowEndpointMismatch=true;discardData=false'</code>"
+										"details": "For Windows: <br><code>&nbsp;&nbsp;ACMfg:<br>&nbsp;&nbsp;&nbsp;&nbsp;connectorClassName: 'com.ibm.industrypack.industryclient.connector.ICConnectorFactory'<br>&nbsp;&nbsp;&nbsp;&nbsp;jarsURL: 'C:\\Program Files\\IBM\\ACMfg\\3.0.1.0\\runtime\\amd64_nt_4'<br>&nbsp;&nbsp;&nbsp;&nbsp;property1: 'trustCertificate=true'<br>&nbsp;&nbsp;&nbsp;&nbsp;property2: 'allowEndpointMismatch=true;discardData=false'</code>"
 									},
 									{
-										"details": "For Linux/Unix: <br>ACMfg:<br>&nbsp;&nbsp;&nbsp;&nbsp;connectorClassName:<br>'com.ibm.industrypack.industryclient.connector.ICConnectorFactory'<br>&nbsp;&nbsp;&nbsp;&nbsp;jarsURL: '/opt/IBM/ACMfg-3.0.1.0/runtime/amd64_linux_2'<br>&nbsp;&nbsp;&nbsp;&nbsp;property1: 'trustCertificate=true'<br>&nbsp;&nbsp;&nbsp;&nbsp;property2: 'allowEndpointMismatch=true;discardData=false'"
+										"details": "For Linux/Unix: <br><code>&nbsp;&nbsp;ACMfg:<br>&nbsp;&nbsp;&nbsp;&nbsp;connectorClassName: 'com.ibm.industrypack.industryclient.connector.ICConnectorFactory'<br>&nbsp;&nbsp;&nbsp;&nbsp;jarsURL: '/opt/IBM/ACMfg-3.0.1.0/runtime/amd64_linux_2'<br>&nbsp;&nbsp;&nbsp;&nbsp;property1: 'trustCertificate=true'<br>&nbsp;&nbsp;&nbsp;&nbsp;property2: 'allowEndpointMismatch=true;discardData=false'</code>"
 									},
 									{
 										"details": "Note: The jarsURL is the installation directory of App Connect for Manufacturing that points to the amd64_nt_n folder."
