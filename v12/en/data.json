@@ -202,7 +202,7 @@
 									},
 									
 									{
-										"details": "For Windows: <br>ACMfg:<br>&nbsp;&nbsp;&nbsp;&nbsp;connectorClassName:<br>'com.ibm.industrypack.industryclient.connector.ICConnectorFactory'<br>&nbsp;&nbsp;&nbsp;&nbsp;jarsURL: 'C:\\Program Files\\IBM\\ACMfg\\3.0.1.0\\runtime\\amd64_nt_4'<br>&nbsp;&nbsp;&nbsp;&nbsp;property1: 'trustCertificate=true'<br>&nbsp;&nbsp;&nbsp;&nbsp;property2: 'allowEndpointMismatch=true;discardData=false'"
+										"details": "For Windows: <br><code>ACMfg:<br>&nbsp;&nbsp;&nbsp;&nbsp;connectorClassName:<br>'com.ibm.industrypack.industryclient.connector.ICConnectorFactory'<br>&nbsp;&nbsp;&nbsp;&nbsp;jarsURL: 'C:\\Program Files\\IBM\\ACMfg\\3.0.1.0\\runtime\\amd64_nt_4'<br>&nbsp;&nbsp;&nbsp;&nbsp;property1: 'trustCertificate=true'<br>&nbsp;&nbsp;&nbsp;&nbsp;property2: 'allowEndpointMismatch=true;discardData=false'</code>"
 									},
 									{
 										"details": "For Linux/Unix: <br>ACMfg:<br>&nbsp;&nbsp;&nbsp;&nbsp;connectorClassName:<br>'com.ibm.industrypack.industryclient.connector.ICConnectorFactory'<br>&nbsp;&nbsp;&nbsp;&nbsp;jarsURL: '/opt/IBM/ACMfg-3.0.1.0/runtime/amd64_linux_2'<br>&nbsp;&nbsp;&nbsp;&nbsp;property1: 'trustCertificate=true'<br>&nbsp;&nbsp;&nbsp;&nbsp;property2: 'allowEndpointMismatch=true;discardData=false'"
@@ -243,7 +243,7 @@
                 "overview": 
 				{
                     "name": "Run",
-                    "heading": "",
+                    "heading": "Configure, Deploy and Test the Input Flow",
                     "_runComment": "The full steps for the user to run through the tutorial. Use 'sections' to render paragraphs, 'steps' with a type of 'ordered' or 'unordered' to render HTML lists, and 'substeps' to render nested lists.",
                 "sections":[  					
 {
